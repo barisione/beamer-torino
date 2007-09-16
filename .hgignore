@@ -1,0 +1,13 @@
+.*~$
+
+syntax: glob
+*.swp
+
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+freewilly.pdf
+nouvelle.pdf
