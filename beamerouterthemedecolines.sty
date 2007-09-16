@@ -1,0 +1,146 @@
+% Copyright 2007 by Marco Barisione
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+% String used between the current page and the total page count.
+\def\beamer@pageofpages{/}
+\DeclareOptionBeamer{pageofpages}{\def\beamer@pageofpages{#1}}
+
+% Image used for the watermark.
+\DeclareOptionBeamer{watermark}{\def\beamer@watermark{#1}}
+
+% Height of the watermark.
+\DeclareOptionBeamer{watermarkheight}{\def\beamer@watermarkheight{#1}}
+
+% The original image height is watermarkheightmult * watermarkheight.
+\def\beamer@watermarkheightmult{1}
+\DeclareOptionBeamer{watermarkheightmult}{\def\beamer@watermarkheightmult{#1}}
+
+\ProcessOptionsBeamer
+
+% Colors.
+\setbeamercolor*{lineup}{parent=palette primary}
+\setbeamercolor*{linemid}{parent=palette secondary}
+\setbeamercolor*{linebottom}{parent=palette tertiary}
+\setbeamercolor*{page header}{parent=frametitle}
+
+% Lengths
+\newlength{\headerheight}
+\setlength{\headerheight}{.045\paperheight}
+% FIXME this doesn't work
+\ifx\lineup\@empty
+  \newlength{\lineup}
+  \setlength{\lineup}{.025\paperheight}
+  \newlength{\linemid}
+  \setlength{\linemid}{.015\paperheight}
+  \newlength{\linebottom}
+  \setlength{\linebottom}{.01\paperheight}
+\fi
+
+% The height of the watermark part below the 3 bottom lines.
+\newlength{\beamer@watermarkheightbottom}
+\addtolength{\beamer@watermarkheightbottom}{\lineup}
+\addtolength{\beamer@watermarkheightbottom}{\linemid}
+\addtolength{\beamer@watermarkheightbottom}{\linebottom}
+
+% The height of the watermark part over the 3 bottom lines before shrinking.
+\newlength{\beamer@watermarkheightupperorig}
+\setlength{\beamer@watermarkheightupperorig}{\beamer@watermarkheight}
+\addtolength{\beamer@watermarkheightupperorig}{-\beamer@watermarkheightbottom}
+\multiply\beamer@watermarkheightupperorig by \beamer@watermarkheightmult
+
+% Footer.
+\defbeamertemplate*{footline}{decolines theme}
+{
+  \leavevmode%
+  % Page number.
+  \hbox{%
+  \begin{beamercolorbox}[wd=.2\paperwidth,ht=0ex,dp=0ex,center]{}%
+    \usebeamerfont{palette primary}\insertframenumber{} \beamer@pageofpages{} \inserttotalframenumber%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.8\paperwidth,ht=0ex,dp=0ex]{}%
+  \end{beamercolorbox}%
+  } %
+  % First line.
+  \hbox{%
+  \begin{beamercolorbox}[wd=.2\paperwidth,ht=\lineup,dp=0pt]{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.8\paperwidth,ht=\lineup,dp=0pt]{lineup}%
+  \end{beamercolorbox}%
+  } %
+  % Second line.
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\linemid,dp=0pt]{linemid}%
+  \end{beamercolorbox}%
+  } %
+  % Third line.
+  \hbox{%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=\linebottom,dp=0pt]{}%
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.9\paperwidth,ht=\linebottom,dp=0pt]{linebottom}%
+  \end{beamercolorbox}%
+  }%
+  % Watermark.
+  \ifx\beamer@watermark\@empty\else%
+    % This seems to fix some alignment problems.
+    \vskip-.5px%
+    \vskip-\beamer@watermarkheightbottom%
+    \llap{\includegraphics[height=\beamer@watermarkheightbottom,clip=true,%
+      trim=0pt 0pt 0pt \beamer@watermarkheightupperorig]{\beamer@watermark}\hskip-\paperwidth}%
+  \fi%
+}
+
+\defbeamertemplate*{headline}{decolines theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=\headerheight,dp=0pt]{page header}%
+  \end{beamercolorbox}%
+  } %
+  \vskip0pt%
+}
+
+\defbeamertemplate*{frametitle}{decolines theme}[1][left]
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \vbox{}\vskip-.5\beamer@leftmargin%
+  \begin{beamercolorbox}[sep=\beamer@leftmargin,#1,wd=\the\@tempdima]{}
+    \usebeamerfont{frametitle}\usebeamercolor[bg]{framesubtitle}%
+    \vbox{}\vskip0ex%
+    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \strut\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[bg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1ex%
+    \if@tempswa\else\vskip-\beamer@leftmargin\fi
+  \end{beamercolorbox}%
+}
+
+% Frame title continuations, default
+\defbeamertemplate*{frametitle continuation}{decolines theme}{\insertcontinuationcountroman}
+
+\defbeamertemplate*{sidebar right}{decolines theme}
+{
+  \vskip.1\beamer@leftmargin%
+  \llap{\insertlogo\hskip.5\beamer@leftmargin}%
+  \vfill%
+  \ifx\beamer@watermark\@empty\else%
+  \llap{\includegraphics[height=\beamer@watermarkheight]{\beamer@watermark}}%
+  \vskip-\beamer@watermarkheightbottom%
+  \fi
+}
+
+\mode
+<all>

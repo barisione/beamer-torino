@@ -1,0 +1,153 @@
+% Copyright 2007 by Marco Barisione
+%
+% This file may be distributed and/or modified
+%
+% 1. under the LaTeX Project Public License and/or
+% 2. under the GNU Public License.
+
+\mode<presentation>
+
+% Use alternative title page style.
+\DeclareOptionBeamer{alternativetitlepage}[true]{\def\beamer@alternativetitlepage{#1}}
+
+% Logo to use in the alternative title page.
+\DeclareOptionBeamer{titlepagelogo}{\def\beamer@titlepagelogo{#1}}
+
+\ExecuteOptionsBeamer{alternativetitlepage=false}
+\ProcessOptionsBeamer
+
+% Colors.
+\setbeamercolor*{lineup}{parent=palette primary}
+\setbeamercolor*{linemid}{parent=palette secondary}
+\setbeamercolor*{linebottom}{parent=palette tertiary}
+\setbeamercolor*{title page header}{parent=palette quaternary}
+
+% Lengths.
+\newlength{\lineup}
+\setlength{\lineup}{.025\paperheight}
+\newlength{\linemid}
+\setlength{\linemid}{.015\paperheight}
+\newlength{\linebottom}
+\setlength{\linebottom}{.01\paperheight}
+
+% Normal title page.
+\defbeamertemplate*{title page normal}{fancy theme}[1][]
+{
+  \vbox{}
+  \vfill
+  \begin{centering}
+    \begin{beamercolorbox}[wd=\paperwidth,sep=8pt,center,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+      \usebeamerfont{author}\insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+    {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \end{centering}
+  \vfill
+}
+
+% Alternative title page, you should use this in a frame with the [plain]
+% option.
+\defbeamertemplate*{title page alternative}{fancy theme}[1][]
+{
+  {\parskip0pt\offinterlineskip%
+  \hbox{\hskip-\Gm@lmargin\hbox{\vbox{%
+  \@tempdima=\textwidth\textwidth=\paperwidth\hsize=\textwidth\def\\{,}\vbox{}\vskip-1.5ex%
+    % Title.
+    \begin{beamercolorbox}[wd=\paperwidth,ht=.4\paperheight,center,#1]{title page header}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+      \vspace{.125\paperheight}%
+    \end{beamercolorbox}%
+    \vbox{}\vskip-\lineup%
+    \vbox{}\vskip-\linemid%
+    % First line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.2\paperwidth,ht=\lineup,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.8\paperwidth,ht=\lineup,dp=0pt]{lineup}%
+    \end{beamercolorbox}%
+    }%
+    \vbox{}\vskip0ex%
+    % Second line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.1\paperwidth,ht=\linemid,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.9\paperwidth,ht=\linemid,dp=0pt]{linemid}%
+    \end{beamercolorbox}%
+    }%
+    % Third line.
+    \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\linebottom,dp=0pt]{}%
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=\linebottom,dp=0pt]{linebottom}%
+    \end{beamercolorbox}%
+    }%
+    \vskip0pt%
+  }}%
+  \hskip-\Gm@rmargin%
+  }}\hfil%
+  %
+  \begin{columns}
+      % Logo.
+      \column{.5\textwidth}
+          \begin{centering}
+              \vbox{}\vfill
+              \includegraphics[height=.4\paperheight]{\beamer@titlepagelogo}
+              \vfill
+          \end{centering}
+      % Authors, institute and date
+      \column{.5\textwidth}
+          \vskip1em\par
+          \begin{beamercolorbox}[sep=8pt,center,#1]{author}
+            \usebeamerfont{author}\insertauthor
+          \end{beamercolorbox}
+          \begin{beamercolorbox}[sep=8pt,center,#1]{institute}
+            \usebeamerfont{institute}\insertinstitute
+          \end{beamercolorbox}
+          \begin{beamercolorbox}[sep=8pt,center,#1]{date}
+            \usebeamerfont{date}\insertdate
+          \end{beamercolorbox}\vskip0.5em
+          {\usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \end{columns}
+}
+
+\defbeamertemplate*{title page}{fancy}[1][]
+{
+  \def\beamer@truetext{true}%
+  \ifx\beamer@alternativetitlepage\beamer@truetext%
+    \usebeamertemplate{title page alternative}%
+  \else%
+    \usebeamertemplate{title page normal}%
+  \fi%
+}
+
+% Items.
+\defbeamertemplate{itemize item}{squarealt}%
+{\tiny\raise.5ex\hbox{\donotcoloroutermaths$\blacksquare$}}
+\defbeamertemplate{itemize subitem}{squarealt}%
+{\tiny\raise.4ex\hbox{\donotcoloroutermaths$\square$}}
+\defbeamertemplate{itemize subsubitem}{squarealt}%
+{\tiny\raise.3ex\hbox{\donotcoloroutermaths$\blacksquare$}}
+
+\setbeamertemplate{items}[squarealt]
+
+\mode<all>
+
