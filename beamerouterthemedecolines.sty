@@ -98,7 +98,7 @@
   \end{beamercolorbox}%
   }%
   % Watermark.
-  \ifx\beamer@decolines@watermark\@empty\else%
+  \if\beamer@decolines@watermark\@empty\else%
     % This seems to fix some alignment problems.
     \vskip-.5px%
     \vskip-\beamer@decolines@watermarkheightbottom%
@@ -154,7 +154,7 @@
   \vskip.1\beamer@leftmargin%
   \llap{\insertlogo\hskip.5\beamer@leftmargin}%
   \vfill%
-  \ifx\beamer@decolines@watermark\@empty\else%
+  \if\beamer@decolines@watermark\@empty\else%
   \llap{\includegraphics[height=\beamer@decolines@watermarkheight]{\beamer@decolines@watermark}}%
   \vskip-\beamer@decolines@watermarkheightbottom%
   \fi
