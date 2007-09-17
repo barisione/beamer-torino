@@ -97,10 +97,12 @@
   \begin{beamercolorbox}[wd=.9\paperwidth,ht=\beamer@decolines@linebottom,dp=0pt]{linebottom}%
   \end{beamercolorbox}%
   }%
+  % This seems to fix some alignment problems with the watermark. It has to be
+  % always applied if you do not want to see the footer moving up and down when
+  % moving from a page with watermark to a page without or vice versa.
+  \vskip-.5px%
   % Watermark.
   \if\beamer@decolines@watermark\@empty\else%
-    % This seems to fix some alignment problems.
-    \vskip-.5px%
     \vskip-\beamer@decolines@watermarkheightbottom%
     \llap{\includegraphics[height=\beamer@decolines@watermarkheightbottom,clip=true,%
       trim=0pt 0pt 0pt \beamer@decolines@watermarkheightupperorig]{\beamer@decolines@watermark}\hskip-\paperwidth}%
