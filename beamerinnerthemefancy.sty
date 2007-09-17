@@ -11,6 +11,7 @@
 \DeclareOptionBeamer{alternativetitlepage}[true]{\def\beamer@alternativetitlepage{#1}}
 
 % Logo to use in the alternative title page.
+\def\beamer@titlepagelogo{}
 \DeclareOptionBeamer{titlepagelogo}{\def\beamer@titlepagelogo{#1}}
 
 % Bullet shape.
@@ -118,15 +119,19 @@
   }}\hfil%
   %
   \begin{columns}
-      % Logo.
-      \column{.5\textwidth}
-          \begin{centering}
-              \vbox{}\vfill
-              \includegraphics[height=.4\paperheight]{\beamer@titlepagelogo}
-              \vfill
-          \end{centering}
-      % Authors, institute and date
-      \column{.5\textwidth}
+      \ifx\beamer@titlepagelogo\@empty%
+          \column{\textwidth}
+      \else
+          \column{.5\textwidth}
+              % Logo.
+              \begin{centering}
+                  \vbox{}\vfill
+                  \includegraphics[height=.4\paperheight]{\beamer@titlepagelogo}
+                  \vfill
+              \end{centering}
+          \column{.5\textwidth}
+       \fi
+          % Authors, institute and date
           \vskip1em\par
           \begin{beamercolorbox}[sep=8pt,center,#1]{author}
             \usebeamerfont{author}\insertauthor
