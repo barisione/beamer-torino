@@ -9,6 +9,8 @@ syntax: glob
 *.out
 *.snm
 *.toc
+*.vrb
+
 freewilly.pdf
 nouvelle.pdf
 chameleon.pdf
