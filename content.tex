@@ -9,6 +9,7 @@
 \frametitle{Lorem ipsum dolor sit amet}
 
 \begin{itemize}
+\item For documentation see the following pages
 \item Consectetur adipisici elit
 \item Sed eiusmod tempor incidunt ut labore et dolore magna aliqua
   \begin{itemize}
@@ -48,3 +49,20 @@ doloremque laudantium, totam rem aperiam eaque ipsa.
 \end{itemize}
 
 \end{frame}
+
+\watermarkoff
+\begin{frame}[t,fragile]
+\frametitle{Frame without watermark}
+
+\begin{itemize}
+\item You may want to disable the watermark on some frames
+  \begin{itemize}
+  \item An image could cover the watermark causing an ugly effect
+  \end{itemize}
+\item The \verb!\watermarkoff! command can be used to disable the watermark for the following frames
+\item The \verb!\watermarkon! command restore the normal watermark for the following frames
+\item If you did not specify a watermark, nothing happens
+\end{itemize}
+
+\end{frame}
+\watermarkon
