@@ -1,60 +1,85 @@
 % DO NOT COMPILE THIS FILE DIRECTLY!
-% This file is included by the other .tex files.
+% This is included by the other .tex files.
 
 \begin{frame}[t,plain]
 \titlepage
 \end{frame}
 
-\begin{frame}[t]
-\frametitle{Lorem ipsum dolor sit amet}
-
+\begin{frame}[t]{What is this?}
 \begin{itemize}
-\item For documentation see the following pages
-\item Consectetur adipisici elit
-\item Sed eiusmod tempor incidunt ut labore et dolore magna aliqua
+\item Beamer is a \LaTeX{} class that allows you to create presentations
+\item The project home page is http://latex-beamer.sourceforge.net/
+\item Beamer contains several themes, but they are a bit ugly
   \begin{itemize}
-  \item Ut enim ad minim veniam
-    \begin{itemize}
-    \item Quis nostrud exercitation
-    \item Ullamco laboris nisi
-    \end{itemize}
-  \item Ut aliquid ex ea commodi consequat
+  \item But with a lot of useful features, such as navigation bars, outlines,
+        etc.
   \end{itemize}
-\item Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu
-      fugiat nulla pariatur
-\item Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui
-      officia deserunt mollit anim id est laborum
+\item Torino is a pretty theme
+  \begin{itemize}
+  \item With a lot of useless (but pretty) features
+  \item But without some useful features
+  \end{itemize}
+\item Why Torino?
+  \begin{itemize}
+  \item Other themes are named after locations of Universities or conferences
+  \item Torino (Turin) is the location of Politecnico di Torino, my universiy
+  \end{itemize}
 \end{itemize}
-
 \end{frame}
 
-\begin{frame}[t]{De Finibus Bonorum et Malorum}
-\framesubtitle{About The Purposes of Good and Evil}
-
-Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium
-doloremque laudantium, totam rem aperiam eaque ipsa.
-
+\begin{frame}[t,fragile]{How to use the theme}
 \begin{itemize}
-\item Ut aliquid ex ea commodi consequat
-\item Sed eiusmod tempor incidunt ut labore et dolore magna aliqua
+\item Install Beamer
+\item Read the Beamer documentation
+\item Install the theme
   \begin{itemize}
-  \item Ut enim ad minim veniam
-  \item Quis nostrud exercitation ullamco laboris nisi
+  \item See the README file
   \end{itemize}
-\item Consectetur adipisici elit
-\item Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu
-      fugiat nulla pariatur
-\item Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui
-      officia deserunt mollit anim id est laborum
+\item Read the example files
+  \begin{itemize}
+  \item \verb!chameleon.tex!: green theme, watermark and circles for bullet
+        lists
+  \item \verb!nouvelle.tex!: green and red theme, watermark and squares for
+        bullet lists
+  \item \verb!freewilly.tex!: blue theme, a logo and squares for bullet lists
+  \end{itemize}
+\item The remaining pages of this document explain the meaning of the
+      options that can be used with this theme
 \end{itemize}
-
 \end{frame}
 
-\begin{frame}[t,fragile]
-\frametitle{Alternative title page}
+\begin{frame}[t,fragile]{Theme files}
 \begin{itemize}
-\item A fancy title page can be enabled with the \verb!alternativetitlepage! option
-\item You can put a logo in the title page, just pass the file name with the
+\item Themes are composed by sub-themes for single aspects
+\item Inner themes define how the title page, the bullet lists, margins,
+      etc. work
+  \begin{itemize}
+    \item \verb!beamerinnerthemefancy.sty!
+  \end{itemize}
+\item Outer themes define how headers and footers look like
+  \begin{itemize}
+    \item \verb!beamerouterthemedecolines.sty!
+  \end{itemize}
+\item Color themes define the colors to be used in outer and inner themes
+  \begin{itemize}
+    \item \verb!beamercolorthemenouvelle.sty!: green footers, red headers and
+          and frame title (this is the default color theme)
+    \item \verb!beamercolorthemechameleon.sty!: green footers and headers
+    \item \verb!beamercolorthemefreewilly.sty!: blue footers, headers and
+          frame title
+  \end{itemize}
+\item Global themes just include inner, outer and color themes
+  \begin{itemize}
+    \item \verb!beamerthemeTorino.sty!
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Alternative title page}
+\begin{itemize}
+\item A fancy title page can be enabled with the \verb!alternativetitlepage!
+      option
+\item You can put a logo in the title page, just pass the file name using the
       \verb!titlepagelogo! option
 \item Remember to use a plain and top-aligned frame when using alternative title
       pages:\\
@@ -65,59 +90,67 @@ doloremque laudantium, totam rem aperiam eaque ipsa.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[t,fragile]
-\frametitle{Watermarks}
+\begin{frame}[t,fragile]{Watermarks}
 \begin{itemize}
 \item A watermark can be shown in the bottom right corner of frames
-\item The \verb!watermark! option is the name of the image file
-\item The \verb!watermarkheight! option is the height of the watermark in the frame
+\item Use the \verb!watermark! option to set name of the image file
+\item The \verb!watermarkheight! option specifies the height of the watermark
+      image
+\item It's a good idea to have a big image and shrink it, so it looks good
+      when the slide is full screen
+\item If the image height in the slide is not the same as the original one,
+      you have to use the \verb!watermarkheightmult! option
   \begin{itemize}
-  \item Not the original image height
-  \item If you are displaying the image at a different size from the original you
-        have to use the \verb!watermarkheightmult! option
+  \item For example, if the image is 400 pixel tall but you want it to
+        occupy only 100 pixels, use
+        \verb![watermarkheight=100px, watermarkheightmult=4]!
+  \item It's ugly but I don't know how to fix it
   \end{itemize}
 \end{itemize}
-
 \end{frame}
 
 \watermarkoff
-\begin{frame}[t,fragile]
-\frametitle{Frame without watermark}
-
+\begin{frame}[t,fragile]{Disabling the watermark}
 \begin{itemize}
 \item You may want to disable the watermark on some frames
   \begin{itemize}
-  \item An image could cover the watermark causing an ugly effect
+  \item For example, an image could partially cover the watermark, with ugly
+        results
   \end{itemize}
-\item The \verb!\watermarkoff! command can be used to disable the watermark for the following frames
-\item The \verb!\watermarkon! command restore the normal watermark for the following frames
+\item The \verb!\watermarkoff! command can be used to disable the watermark
+      in the following frames
+\item The \verb!\watermarkon! command restores the watermark in the following
+      frames
 \item If you did not specify a watermark, nothing happens
+\vskip5ex
+\item For this frame \verb!\watermarkoff! was used
 \end{itemize}
-
 \end{frame}
 \watermarkon
 
-\begin{frame}[t,fragile]
-\frametitle{Other options}
+\begin{frame}[t,fragile]{Other options}
 \begin{itemize}
-\item The \verb!pageofpages! option defines the string inserted between the current page number
-      and the total page count
+\item The \verb!pageofpages! option defines the string between the current
+      page number and the total page count
   \begin{itemize}
   \item The default is ``/''
   \item The example files set \verb!pageofpages! to ``of''
   \end{itemize}
-\item The \verb!bullet! option specifies the symbol to use in bullet lists
+\item The \verb!bullet! option can be used to choose the symbol used in
+      bullet lists
   \begin{itemize}
   \item \verb!square!: A filled square
-       ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\blacksquare$}}) for first and third level
-        items, an empty square ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\square$}}) for
+        ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\blacksquare$}}) for
+        first and third level items, an empty square
+        ({\usebeamercolor[fg]{item}\tiny\raise0.2ex\hbox{$\square$}}) for
         second level items
-  \item \verb!circle!: A filled circle ({\usebeamercolor[fg]{item}$\bullet$}) for first
-        and third level items, an empty circle ({\usebeamercolor[fg]{item}$\circ$}) for second
-        level items
-  \item The default is \verb!square!
+  \item \verb!circle!: A filled circle ({\usebeamercolor[fg]{item}$\bullet$})
+        for first and third level items, an empty circle
+        ({\usebeamercolor[fg]{item}$\circ$}) for second level items
+  \item The default value is \verb!square!
   \end{itemize}
-\item If the \verb!titleline! option is set to \verb!true!, a horizontal line is drawn below
-      the title
+\item If the \verb!titleline! option is set to \verb!true!, a horizontal line
+      is drawn below the title
 \end{itemize}
 \end{frame}
+
