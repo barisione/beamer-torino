@@ -13,7 +13,10 @@
 % Logo to use in the alternative title page.
 \DeclareOptionBeamer{titlepagelogo}{\def\beamer@titlepagelogo{#1}}
 
-\ExecuteOptionsBeamer{alternativetitlepage=false}
+% Bullet shape.
+\DeclareOptionBeamer{bullet}{\def\beamer@bullet{#1}}
+
+\ExecuteOptionsBeamer{alternativetitlepage=false,bullet=square}
 \ProcessOptionsBeamer
 
 % Colors.
@@ -147,7 +150,19 @@
 \defbeamertemplate{itemize subsubitem}{squarealt}%
 {\tiny\raise.3ex\hbox{\donotcoloroutermaths$\blacksquare$}}
 
-\setbeamertemplate{items}[squarealt]
+\defbeamertemplate{itemize item}{circlealt}%
+{\small\raise.2ex\hbox{\donotcoloroutermaths$\bullet$}}
+\defbeamertemplate{itemize subitem}{circlealt}%
+{\small\raise.1ex\hbox{\donotcoloroutermaths$\circ$}}
+\defbeamertemplate{itemize subsubitem}{circlealt}%
+{\scriptsize\raise.1ex\hbox{\donotcoloroutermaths$\bullet$}}
+
+\def\circletext{circle}
+\ifx\beamer@bullet\circletext
+  \setbeamertemplate{items}[circlealt]
+\else
+  \setbeamertemplate{items}[squarealt]
+\fi
 
 \mode<all>
 
