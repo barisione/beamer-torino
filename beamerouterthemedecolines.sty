@@ -16,7 +16,7 @@
 
 % Image used for the watermark.
 \def\beamer@decolines@watermark{}
-\DeclareOptionBeamer{watermark}{\def\beamer@decolines@watermark{#1}}
+\DeclareOptionBeamer{watermark}{\def\beamer@decolines@watermarkorig{#1}}
 
 % Height of the watermark.
 \def\beamer@decolines@watermarkheight{100px}
@@ -28,6 +28,15 @@
 
 \ExecuteOptionsBeamer{titleline=false}
 \ProcessOptionsBeamer
+
+% Enable/disable the watermark.
+\def\watermarkon{%
+  \def\beamer@decolines@watermark{\beamer@decolines@watermarkorig}%
+}
+\def\watermarkoff{\def\beamer@decolines@watermark{}}
+
+% Initially enable the watermark.
+\watermarkon
 
 % Colors.
 \setbeamercolor*{lineup}{parent=palette primary}
