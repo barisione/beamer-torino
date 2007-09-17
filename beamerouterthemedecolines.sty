@@ -11,6 +11,9 @@
 \def\beamer@pageofpages{/}
 \DeclareOptionBeamer{pageofpages}{\def\beamer@pageofpages{#1}}
 
+% Show a line below the frame title.
+\DeclareOptionBeamer{titleline}[true]{\def\beamer@titleline{#1}}
+
 % Image used for the watermark.
 \def\beamer@watermark{}
 \DeclareOptionBeamer{watermark}{\def\beamer@watermark{#1}}
@@ -23,6 +26,7 @@
 \def\beamer@watermarkheightmult{1}
 \DeclareOptionBeamer{watermarkheightmult}{\def\beamer@watermarkheightmult{#1}}
 
+\ExecuteOptionsBeamer{titleline=false}
 \ProcessOptionsBeamer
 
 % Colors.
@@ -128,6 +132,12 @@
     \vskip-1ex%
     \if@tempswa\else\vskip-\beamer@leftmargin\fi
   \end{beamercolorbox}%
+  \def\beamer@truetext{true}%
+  \ifx\beamer@titleline\beamer@truetext%
+    \vskip-.5\beamer@leftmargin%
+    \begin{beamercolorbox}[wd=\textwidth,ht=.1ex,dp=0ex]{linemid}%
+    \end{beamercolorbox}%
+  \fi
 }
 
 % Frame title continuations, default
