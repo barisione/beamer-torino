@@ -36,6 +36,11 @@
   \item Some distros have a \verb!latex-beamer! package
   \end{itemize}
 \item Read the Beamer documentation
+  \begin{itemize}
+  \item \verb!/usr/share/doc/latex-beamer/beameruserguide.pdf.gz! if you are
+        using Debian
+  \item \verb!doc/beameruserguide.pdf! in the source package
+  \end{itemize}
 \item Install the theme
   \begin{itemize}
   \item \verb!mkdir -p ~/texmf/tex/latex/beamer!\\
@@ -49,14 +54,12 @@
         bullet lists
   \item \verb!freewilly.tex!: blue theme, a logo and squares for bullet lists
   \end{itemize}
-\item The remaining pages of this document explain the meaning of the
-      options that can be used with this theme
 \end{itemize}
 \end{frame}
 
 \begin{frame}[t,fragile]{Theme files}
 \begin{itemize}
-\item Themes are composed by sub-themes for single aspects
+\item Themes are composed by sub-themes for single features
 \item Inner themes define how the title page, the bullet lists, margins,
       etc. work
   \begin{itemize}
@@ -69,7 +72,6 @@
 \item Color themes define the colors to be used in outer and inner themes
   \begin{itemize}
     \item \verb!beamercolorthemechameleon.sty!: green footers and headers
-          (this is the default color theme)
     \item \verb!beamercolorthemenouvelle.sty!: green footers, red headers and
           and frame title
     \item \verb!beamercolorthemefreewilly.sty!: blue footers, headers and
@@ -78,6 +80,33 @@
 \item Global themes just include inner, outer and color themes
   \begin{itemize}
     \item \verb!beamerthemeTorino.sty!
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Configuring the theme}
+\begin{itemize}
+\item Beamer themes can be configured with options between \verb![! and
+      \verb!]!
+  \begin{itemize}
+  \item \verb!\usetheme[option1 = value, option2 = value]{Torino}!
+  \end{itemize}
+\item If you do not specify any option, you get
+  \begin{itemize}
+  \item Simple title page
+  \item No watermark or logo
+  \item Chameleon (green) color theme
+  \item Squares for bullet lists
+  \end{itemize}
+\item Color themes can be changed with \verb!\usecolortheme!
+  \begin{itemize}
+  \item \verb!\usecolortheme{nouvelle}!: green and red
+  \item \verb!\usecolortheme{freewilly}!: blue
+  \end{itemize}
+\item A logo, shown in the upper right corner, can be choosen with the
+      \verb!\logo! command
+  \begin{itemize}
+  \item \verb!\logo{\includegraphics[height=50px]{logo-image}}!
   \end{itemize}
 \end{itemize}
 \end{frame}
