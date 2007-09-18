@@ -14,8 +14,8 @@ $ mkdir -p ~/texmf/tex/latex/beamer
 $ cp *.sty ~/texmf/tex/latex/beamer
 
 Now you are ready to use the theme, for documentation read  the  example
-files: chameleon.tex nouvelle.tex and freewilly.tex.  Then compile these
-files to get some slides with some documentation:
+files: chameleon.tex nouvelle.tex and freewilly.tex.  Compiling them you
+get some slides with documentation:
 
 $ pdflatex chameleon.tex
 $ pdflatex nouvelle.tex
