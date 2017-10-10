@@ -1,4 +1,4 @@
-TORINO, A PRETTY THEME FOR LATEX-BEAMER
+Torino, a pretty theme for LaTeX-beamer
 =======================================
 
 Beamer   (http://latex-beamer.sourceforge.net/)   is   a   LaTeX   class
@@ -10,14 +10,13 @@ First of all, you have to install Beamer, directly from source or  using
 an already made package for your distro.  Then install the theme,  on  a
 Unix system just type in a terminal:
 
-$ mkdir -p ~/texmf/tex/latex/beamer
-$ cp *.sty ~/texmf/tex/latex/beamer
+    $ mkdir -p ~/texmf/tex/latex/beamer
+    $ cp *.sty ~/texmf/tex/latex/beamer
 
 Now you are ready to use the theme, for documentation read  the  example
 files: chameleon.tex nouvelle.tex and freewilly.tex.  Compiling them you
 get some slides with documentation:
 
-$ pdflatex chameleon.tex
-$ pdflatex nouvelle.tex
-$ pdflatex freewilly.tex
-
+    $ pdflatex chameleon.tex
+    $ pdflatex nouvelle.tex
+    $ pdflatex freewilly.tex
