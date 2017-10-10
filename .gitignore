@@ -1,7 +1,5 @@
-.*~$
-
-syntax: glob
-*.swp
+*~
+*.sw[po]
 
 *.aux
 *.log
